@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://h54mnl7l0tla"]
+
+[ext_resource type="Script" uid="uid://cfk3de8cgy1rv" path="res://scripts/pickup.gd" id="1_7cqbe"]
+[ext_resource type="Texture2D" uid="uid://c6n5mrr3ce33r" path="res://icon.svg" id="1_pg2rt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7cqbe"]
+size = Vector3(1.2421875, 1.2426147, 0.26654053)
+
+[node name="pickup" type="Node3D" unique_id=1969642115]
+script = ExtResource("1_7cqbe")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1614062070]
+texture = ExtResource("1_pg2rt")
+
+[node name="Area3D" type="Area3D" parent="Sprite3D" unique_id=331404068]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D/Area3D" unique_id=1382762833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0048828125, 0.014312744, 0.048919678)
+shape = SubResource("BoxShape3D_7cqbe")
+
+[connection signal="body_entered" from="Sprite3D/Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://cxwev58vb5378"]
+
+[ext_resource type="Environment" uid="uid://b5n41rgbbmipe" path="res://environments/starry_night_environment.tres" id="1_7pvxh"]
+[ext_resource type="PackedScene" uid="uid://niwvp7x8elrg" path="res://scenes/player.tscn" id="1_j5px3"]
+[ext_resource type="Material" uid="uid://c0d822pmarjmp" path="res://shaders/CG ahh.tres" id="2_twpsu"]
+[ext_resource type="PackedScene" uid="uid://cgv25l8pgjqc3" path="res://scenes/transition.tscn" id="3_jh1ax"]
+[ext_resource type="Shader" uid="uid://ccth82yab5rsh" path="res://shaders/buck.gdshader" id="3_lrqlo"]
+[ext_resource type="PackedScene" uid="uid://dobyc115a6yrs" path="res://scenes/exit.tscn" id="4_kycxp"]
+[ext_resource type="PackedScene" uid="uid://h54mnl7l0tla" path="res://scenes/pickup.tscn" id="4_sqa0i"]
+[ext_resource type="PackedScene" uid="uid://dy5fwy7xdnh0g" path="res://scenes/fade_in.tscn" id="6_j287u"]
+[ext_resource type="PackedScene" uid="uid://vybjp7uu533w" path="res://scenes/death_hit.tscn" id="8_5sfjl"]
+[ext_resource type="Script" uid="uid://tu6c2wu86oja" path="res://scripts/scoping_camera.gd" id="9_3hfy5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqa0i"]
+shader = ExtResource("3_lrqlo")
+shader_parameter/exposure = 1.0
+shader_parameter/contrast = 1.05
+shader_parameter/saturation = 0.9
+shader_parameter/enable_pixelate = true
+shader_parameter/pixel_factor = 3.0
+shader_parameter/enable_posterize = true
+shader_parameter/color_levels = 16.0
+shader_parameter/dither_strength = 0.35
+shader_parameter/chrom_aberration = 0.07
+shader_parameter/vignette_strength = 1.0
+shader_parameter/grain_strength = 0.2
+shader_parameter/tint_color = Vector3(0.95, 1.03, 0.9)
+shader_parameter/tint_strength = 0.05200000247
+shader_parameter/viewport_size_override = Vector2(0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lrqlo"]
+
+[node name="Root" type="Node" unique_id=1434804768]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1074121231]
+environment = ExtResource("1_7pvxh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=260342757]
+transform = Transform3D(-0.8651455, -0.4551061, 0.21071725, 0.0796798, 0.29008946, 0.9536766, -0.49515092, 0.84185886, -0.21470672, 0, 0, 0)
+light_color = Color(0.8210504, 0.5775381, 0.93389755, 1)
+light_energy = 3.909
+light_indirect_energy = 2.818
+light_volumetric_fog_energy = 2.273
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=685499049 instance=ExtResource("1_j5px3")]
+
+[node name="exit" parent="." unique_id=1681503544 instance=ExtResource("4_kycxp")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11.249868, 6.6469083, -5.214464)
+
+[node name="pickup" parent="." unique_id=1969642115 instance=ExtResource("4_sqa0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5433488, 8.080135, -15.103074)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=889905890]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2134066602]
+material = SubResource("ShaderMaterial_sqa0i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="transition" parent="CanvasLayer" unique_id=1949874444 instance=ExtResource("3_jh1ax")]
+offset_left = 2.0
+offset_top = 0.0
+offset_right = 1307.0
+offset_bottom = 729.0
+
+[node name="fade_in" parent="CanvasLayer" unique_id=2080763635 instance=ExtResource("6_j287u")]
+
+[node name="blocks" type="Node" parent="." unique_id=132122137]
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="blocks" unique_id=1864886819]
+transform = Transform3D(21.82265, 0, 0, 0, 3.4483638, 0, 0, 0, 5.988421, 0.5124974, 0.27541852, 6.1174445)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="blocks" unique_id=666400908]
+transform = Transform3D(5.0746603, 0, 0, 0, 1.0198686, 0, 0, 0, 3.4421823, 1.3959632, 2.3952854, -1.83817)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="blocks" unique_id=1526870383]
+transform = Transform3D(4.651977, 0, 0, 0, 3.4483638, 0, 0, 0, 4.318997, -8.014266, 3.126732, 6.0906005)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="blocks" unique_id=317688848]
+transform = Transform3D(2.7597456, 0, 0, 0, 4.939164, 0, 0, 0, 2.607441, 14.856598, 1.0815737, 6.8707185)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D12" type="CSGMesh3D" parent="blocks" unique_id=1469686090]
+transform = Transform3D(2.7597456, 0, 0, 0, 0.71645147, 0, 0, 0, 2.607441, 15.047283, 1.1390655, -0.63820815)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D14" type="CSGMesh3D" parent="blocks" unique_id=260736]
+transform = Transform3D(2.7597456, 0, 0, 0, 0.71645147, 0, 0, 0, 2.607441, 13.881024, 2.227147, -5.2527823)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D13" type="CSGMesh3D" parent="blocks" unique_id=647531929]
+transform = Transform3D(2.7597456, 0, 0, 0, 6.5465293, 0, 0, 0, 2.607441, 11.813219, 1.8791583, -5.2284026)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D6" type="CSGMesh3D" parent="blocks" unique_id=127604174]
+transform = Transform3D(12.127334, 0, 0, 0, 0.81581706, 0, 0, 0, 4.318997, -12.305431, 3.1703413, -1.192008)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D8" type="CSGMesh3D" parent="blocks" unique_id=720310958]
+transform = Transform3D(7.6258707, 0, 0, 0, 1.2121556, 0, 0, 0, 6.1477375, -7.907306, 4.8876076, -8.934157)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="blocks" unique_id=76589725]
+transform = Transform3D(5.32514, 0, 0, 0, 12.207518, 0, 0, 0, 4.318997, 0.60878277, 0.7788105, -14.856773)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D7" type="CSGMesh3D" parent="blocks" unique_id=655673365]
+transform = Transform3D(4.651977, 0, 0, 0, 3.4483638, 0, 0, 0, 4.318997, -15.951801, 3.1703413, 6.1430097)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="blocks" unique_id=1999648736]
+transform = Transform3D(4.651977, 0, 0, 0, 3.4483638, 0, 0, 0, 4.318997, -0.970912, -0.64983916, -7.996289)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="blocks" unique_id=664225060]
+transform = Transform3D(21.190157, 0, 0, 0, 1, 0, 0, 0, 19.751804, 0, -1.5013282, -0.7708509)
+use_collision = true
+mesh = SubResource("BoxMesh_lrqlo")
+material = ExtResource("2_twpsu")
+
+[node name="death_hit" parent="." unique_id=334640224 instance=ExtResource("8_5sfjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.000708, 0)
+
+[node name="scoping_camera" type="Camera3D" parent="." unique_id=2052235648]
+script = ExtResource("9_3hfy5")

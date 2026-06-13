@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cgv25l8pgjqc3"]
+
+[ext_resource type="Shader" uid="uid://cr6vt187ofkaq" path="res://shaders/transition.gdshader" id="1_f0i4t"]
+[ext_resource type="Script" uid="uid://lwfj7k8n3wmt" path="res://scripts/transition.gd" id="2_px735"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nemqi"]
+shader = ExtResource("1_f0i4t")
+shader_parameter/AspectRatio = 1.5
+shader_parameter/Diamonds = 10.0
+shader_parameter/pixel_size = 0.08
+shader_parameter/height = -1.0
+shader_parameter/disable_pixel = true
+
+[node name="transition" type="ColorRect" unique_id=1949874444]
+material = SubResource("ShaderMaterial_nemqi")
+offset_left = -653.0
+offset_top = -368.0
+offset_right = 652.0
+offset_bottom = 361.0
+script = ExtResource("2_px735")

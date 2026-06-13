@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cxiaj5lf3ttqx"]
+
+[ext_resource type="Environment" uid="uid://b5n41rgbbmipe" path="res://environments/starry_night_environment.tres" id="1_abhep"]
+[ext_resource type="Script" uid="uid://b1o8seedypiyh" path="res://addons/dioptra/node-types/DP_Map.gd" id="1_jr086"]
+[ext_resource type="PackedScene" uid="uid://dy5fwy7xdnh0g" path="res://scenes/fade_in.tscn" id="2_0g7v1"]
+[ext_resource type="PackedScene" uid="uid://cgv25l8pgjqc3" path="res://scenes/transition.tscn" id="3_upuy8"]
+[ext_resource type="PackedScene" uid="uid://niwvp7x8elrg" path="res://scenes/player.tscn" id="4_upuy8"]
+[ext_resource type="Material" uid="uid://c0d822pmarjmp" path="res://shaders/CG ahh.tres" id="6_0g7v1"]
+[ext_resource type="Material" uid="uid://bt48u32sb86ed" path="res://materials/material_test.tres" id="7_upuy8"]
+
+[node name="Node" type="Node" unique_id=225330017]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1235653861]
+environment = ExtResource("1_abhep")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1285065581]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.6943327, 0.47148567, 0.7463603, 1)
+light_energy = 3.254
+light_volumetric_fog_energy = 5.507
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=685499049 instance=ExtResource("4_upuy8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624799, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=297500005]
+
+[node name="fade_in" parent="CanvasLayer" unique_id=2080763635 instance=ExtResource("2_0g7v1")]
+
+[node name="transition" parent="CanvasLayer" unique_id=1949874444 instance=ExtResource("3_upuy8")]
+
+[node name="@Node3D@54151" type="Node3D" parent="." unique_id=627230659]
+script = ExtResource("1_jr086")
+material_objects = Array[Material]([ExtResource("6_0g7v1"), ExtResource("7_upuy8")])

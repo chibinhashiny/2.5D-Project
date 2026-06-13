@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dy5fwy7xdnh0g"]
+
+[ext_resource type="Shader" uid="uid://cr6vt187ofkaq" path="res://shaders/transition.gdshader" id="1_8lltj"]
+[ext_resource type="Script" uid="uid://bs4337xlp5yea" path="res://scripts/fade_in.gd" id="2_aw3x7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5sfjl"]
+shader = ExtResource("1_8lltj")
+shader_parameter/AspectRatio = 1.5
+shader_parameter/Diamonds = 10.0
+shader_parameter/pixel_size = 0.08
+shader_parameter/height = 1.0
+shader_parameter/disable_pixel = true
+
+[node name="fade_in" type="ColorRect" unique_id=2080763635]
+material = SubResource("ShaderMaterial_5sfjl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_aw3x7")

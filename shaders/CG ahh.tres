@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c0d822pmarjmp"]
+
+[ext_resource type="Shader" uid="uid://0yblwh7tb0jy" path="res://shaders/CG ahh.gdshader" id="1_42qe5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_42qe5"]
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_42qe5"]
+noise_type = 4
+frequency = 0.0074
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vlgch"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_42qe5")
+seamless = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_42qe5")
+shader_parameter/Texture = SubResource("NoiseTexture2D_42qe5")
+shader_parameter/flow = 0.01
+shader_parameter/glow = 0.685
+shader_parameter/glossy = true
+shader_parameter/has_bump = true
+shader_parameter/normal_map = SubResource("NoiseTexture2D_vlgch")

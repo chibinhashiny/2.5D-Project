@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://pq1hyy42syrm"]
+
+[ext_resource type="Shader" uid="uid://uhmkcmi03tc0" path="res://shaders/dots.gdshader" id="1_w06fk"]
+[ext_resource type="Shader" uid="uid://bifga6lwl7xrt" path="res://shaders/hand_drawn.gdshader" id="2_nyfom"]
+[ext_resource type="PackedScene" uid="uid://cgv25l8pgjqc3" path="res://scenes/transition.tscn" id="3_wwdiv"]
+[ext_resource type="PackedScene" uid="uid://dy5fwy7xdnh0g" path="res://scenes/fade_in.tscn" id="4_nemqi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nyfom"]
+shader = ExtResource("1_w06fk")
+shader_parameter/movement_speed = 0.1
+shader_parameter/movement_scale = 2.0
+shader_parameter/color_1 = Color(0.6516599, 0.40424392, 0.8490586, 1)
+shader_parameter/color_2 = Color(0.16, 0.16, 0.16, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwdiv"]
+shader = ExtResource("2_nyfom")
+shader_parameter/shaking = true
+shader_parameter/amplitude = 1.0
+shader_parameter/noise_scale = 20.0
+shader_parameter/noise_speed = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_nyfom"]
+font_size = 45
+outline_color = Color(0, 0, 0, 1)
+
+[node name="VictoryAndShi" type="Node2D" unique_id=2142238565]
+
+[node name="BG" type="Control" parent="." unique_id=257497476]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BG" unique_id=429691844]
+material = SubResource("ShaderMaterial_nyfom")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -636.0
+offset_top = -347.0
+offset_right = 629.0
+offset_bottom = 341.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="text" type="Label" parent="." unique_id=996020749]
+material = SubResource("ShaderMaterial_wwdiv")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -311.0
+offset_top = -31.5
+offset_right = 311.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "congrats twin u the goat fr fr"
+label_settings = SubResource("LabelSettings_nyfom")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="text2" type="Label" parent="." unique_id=1364293085]
+material = SubResource("ShaderMaterial_wwdiv")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = 31.0
+offset_right = 399.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.68667734, 0.68667734)
+size_flags_horizontal = 4
+text = "(press enter to continue)"
+label_settings = SubResource("LabelSettings_nyfom")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2136794272]
+
+[node name="transition" parent="." unique_id=1949874444 instance=ExtResource("3_wwdiv")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=969849834]
+
+[node name="fade_in" parent="CanvasLayer" unique_id=2080763635 instance=ExtResource("4_nemqi")]

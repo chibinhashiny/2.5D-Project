@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dobyc115a6yrs"]
+
+[ext_resource type="Texture2D" uid="uid://kcjlocqhggu4" path="res://icon.png" id="1_l0aq0"]
+[ext_resource type="Script" uid="uid://crdk36t4p2vmk" path="res://scripts/exit.gd" id="1_uyw7u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l0aq0"]
+size = Vector3(2.4815063, 1.8731079, 1)
+
+[node name="exit" type="Node3D" unique_id=1681503544]
+script = ExtResource("1_uyw7u")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1203049701]
+texture = ExtResource("1_l0aq0")
+
+[node name="Area3D" type="Area3D" parent="Sprite3D" unique_id=1681190597]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sprite3D/Area3D" unique_id=521186389]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016204834, 0.041107178, 0)
+shape = SubResource("BoxShape3D_l0aq0")
+debug_color = Color(0.9600114, 3.85046e-07, 0.52113026, 0.41960785)
+
+[connection signal="body_entered" from="Sprite3D/Area3D" to="." method="_on_area_3d_body_entered"]

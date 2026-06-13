@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://niwvp7x8elrg"]
+
+[ext_resource type="Script" uid="uid://udpmqakbajnb" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://xcdx1h3ucsa3" path="res://scenes/2d_model.tscn" id="2_g2els"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7up8o"]
+radius = 0.35351563
+height = 0.70703125
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g2els"]
+radius = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_g2els"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2els"]
+font_size = 42
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=685499049 node_paths=PackedStringArray("player_sprite")]
+script = ExtResource("1_3vyb7")
+speed = 8
+fall_acceleration = 75
+player_sprite = NodePath("SubViewport/2D_model/AnimatedSprite2D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=377719494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14648438, 0)
+shape = SubResource("CapsuleShape3D_7up8o")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=341710241]
+transform = Transform3D(1, 0, 0, 0, 0.8290376, 0.5591929, 0, -0.5591929, 0.8290376, 0, 2.94, 4.451)
+shape = SubResource("SphereShape3D_g2els")
+spring_length = -1.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=529982857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23463821, 0.12105942)
+size = 6.194
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=972285723]
+transform = Transform3D(1, 0, 0, 0, 0.74982744, 0.4317166, 0, -0.26583713, 1.2177112, 0, -0.1367332, 0.027098417)
+shaded = true
+alpha_cut = 2
+texture_filter = 0
+texture = SubResource("ViewportTexture_g2els")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1112713474]
+transparent_bg = true
+size = Vector2i(100, 100)
+
+[node name="2D_model" parent="SubViewport" unique_id=33861427 instance=ExtResource("2_g2els")]
+
+[node name="coyote_timer" type="Timer" parent="." unique_id=1313126119]
+one_shot = true
+
+[node name="has_the_thing_text" type="Label" parent="." unique_id=1122334343]
+offset_right = 850.0
+offset_bottom = 199.0
+text = "uh yeah
+"
+label_settings = SubResource("LabelSettings_g2els")
+
+[connection signal="timeout" from="coyote_timer" to="." method="_on_coyote_timer_timeout"]
+
+[editable path="SubViewport/2D_model"]

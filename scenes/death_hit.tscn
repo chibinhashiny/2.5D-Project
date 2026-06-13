@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://vybjp7uu533w"]
+
+[ext_resource type="Script" uid="uid://djgcwbrtvae4s" path="res://scripts/death_hit.gd" id="1_14tam"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j287u"]
+size = Vector3(80.74579, 1, 91.53575)
+
+[node name="death_hit" type="Node3D" unique_id=334640224]
+script = ExtResource("1_14tam")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1746560335]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=268186821]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.826241, 0, -0.5703144)
+shape = SubResource("BoxShape3D_j287u")
+debug_color = Color(0.9590897, 0, 0.52622503, 0.41960785)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
