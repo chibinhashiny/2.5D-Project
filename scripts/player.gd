@@ -15,6 +15,8 @@ var coyote_frames = 4
 var coyote = false
 var last_floor = false
 
+var is_damaged = false
+
 func _ready() -> void:
 	coyote_timer.wait_time = coyote_frames / 60.0
 	
@@ -154,6 +156,11 @@ func _physics_process(delta: float) -> void:
 	#print(player_sprite.animation)
 	velocity = target_velocity
 	last_floor = is_on_floor()
+	if is_damaged == true:
+		target_velocity.y = 25
+		self.velocity.x += 67
+		is_damaged = false
+	
 	move_and_slide()	
 
 	
@@ -161,3 +168,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_coyote_timer_timeout() -> void:
 	coyote = false
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		is_damaged = true
+		print("bateu")
+	pass # Replace with function body.

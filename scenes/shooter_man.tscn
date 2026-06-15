@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://tgwsi8mk86ht"]
+
+[ext_resource type="Script" uid="uid://0bje83cuj34r" path="res://scripts/shooter_man.gd" id="1_uqv12"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y3xxt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqv12"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="shooter_man" type="Node3D" unique_id=1481434254]
+script = ExtResource("1_uqv12")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1815558992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.015769958)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=932312666]
+transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, 0, 0, 0)
+shape = SubResource("BoxShape3D_y3xxt")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=312368615]
+transform = Transform3D(0.47863016, 0, 0, 0, 0.47863016, 0, 0, 0, 0.47863016, 0, 0, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_uqv12")
+
+[node name="bullet_spawn" type="Marker3D" parent="." unique_id=1736056980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.27690864)
+
+[node name="Timer" type="Timer" parent="." unique_id=1706595820]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

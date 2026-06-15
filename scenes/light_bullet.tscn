@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bar53c5gm6f2y"]
+
+[ext_resource type="Script" uid="uid://ikdxitgww150" path="res://scripts/light_bullet.gd" id="1_kfimr"]
+[ext_resource type="Shader" uid="uid://b2utsu446c2ov" path="res://shaders/holographic.gdshader" id="2_cgp3w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jfypy"]
+render_priority = 0
+shader = ExtResource("2_cgp3w")
+shader_parameter/metal_color_gold = Vector3(1, 0.843, 0)
+shader_parameter/metal_color_silver = Vector3(0.75, 0.75, 0.75)
+shader_parameter/use_gold = true
+shader_parameter/roughness = 0.1
+shader_parameter/metallic = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7pvxh"]
+radius = 0.07362703
+
+[node name="light_bullet" type="Node3D" unique_id=2001444762]
+script = ExtResource("1_kfimr")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=549624024]
+transform = Transform3D(0.14411733, 0, 0, 0, 0.14411733, 0, 0, 0, 0.14411733, 0, 0, 0)
+radial_segments = 7
+rings = 4
+material = SubResource("ShaderMaterial_jfypy")
+
+[node name="Area3D" type="Area3D" parent="CSGSphere3D" unique_id=907442929]
+transform = Transform3D(6.938791, 0, 0, 0, 6.938791, 0, 0, 0, 6.938791, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CSGSphere3D/Area3D" unique_id=1765215099]
+shape = SubResource("SphereShape3D_7pvxh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=371364866]
+light_color = Color(0.6675662, 0.59607315, 0.26292604, 1)
+light_energy = 2.905
+omni_range = 0.18057027
+
+[connection signal="body_entered" from="CSGSphere3D/Area3D" to="." method="_on_area_3d_body_entered"]

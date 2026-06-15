@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dy5fwy7xdnh0g" path="res://scenes/fade_in.tscn" id="6_j287u"]
 [ext_resource type="PackedScene" uid="uid://vybjp7uu533w" path="res://scenes/death_hit.tscn" id="8_5sfjl"]
 [ext_resource type="Script" uid="uid://tu6c2wu86oja" path="res://scripts/scoping_camera.gd" id="9_3hfy5"]
+[ext_resource type="PackedScene" uid="uid://tgwsi8mk86ht" path="res://scenes/shooter_man.tscn" id="11_y3xxt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sqa0i"]
 shader = ExtResource("3_lrqlo")
@@ -51,6 +52,9 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 11.2
 [node name="pickup" parent="." unique_id=1969642115 instance=ExtResource("4_sqa0i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5433488, 8.080135, -15.103074)
 
+[node name="death_hit" parent="." unique_id=334640224 instance=ExtResource("8_5sfjl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.000708, 0)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=889905890]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=2134066602]
@@ -84,7 +88,7 @@ mesh = SubResource("BoxMesh_lrqlo")
 material = ExtResource("2_twpsu")
 
 [node name="CSGMesh3D3" type="CSGMesh3D" parent="blocks" unique_id=1526870383]
-transform = Transform3D(4.651977, 0, 0, 0, 3.4483638, 0, 0, 0, 4.318997, -8.014266, 3.126732, 6.0906005)
+transform = Transform3D(4.651977, 0, 0, 0, 3.4483638, 0, 0, 0, 4.318997, -8.014266, 2.086566, 6.0906005)
 use_collision = true
 mesh = SubResource("BoxMesh_lrqlo")
 material = ExtResource("2_twpsu")
@@ -149,8 +153,22 @@ use_collision = true
 mesh = SubResource("BoxMesh_lrqlo")
 material = ExtResource("2_twpsu")
 
-[node name="death_hit" parent="." unique_id=334640224 instance=ExtResource("8_5sfjl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.000708, 0)
-
 [node name="scoping_camera" type="Camera3D" parent="." unique_id=2052235648]
 script = ExtResource("9_3hfy5")
+
+[node name="shooter_man" parent="." unique_id=1481434254 instance=ExtResource("11_y3xxt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3134694, 3.8453612, -0.65994453)
+
+[node name="shooter_man2" parent="." unique_id=2013883992 instance=ExtResource("11_y3xxt")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -15.672983, 5.199464, 5.904071)
+
+[node name="shooter_man3" parent="." unique_id=1905925397 instance=ExtResource("11_y3xxt")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 10.24669, 2.306374, 5.904071)
+
+[connection signal="body_entered" from="shooter_man/Area3D" to="Player" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="shooter_man2/Area3D" to="Player" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="shooter_man3/Area3D" to="Player" method="_on_area_3d_body_entered"]
+
+[editable path="shooter_man"]
+[editable path="shooter_man2"]
+[editable path="shooter_man3"]
